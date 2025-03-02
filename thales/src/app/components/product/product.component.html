@@ -1,52 +1,30 @@
 <div class="container">
-    <h2>Product List</h2>
-    <mat-form-field class="example-full-width">
-        <mat-label>Searcg by ID</mat-label>
-        <input [(ngModel)]="productId" matInput placeholder="If you do not enter ID, all will be loaded" value="Sushi">
+  <h2>Product List</h2>
+
+  <div class="card">
+    <mat-form-field appearance="outline">
+      <mat-label>Search by ID</mat-label>
+      <input matInput [(ngModel)]="productId" placeholder="If you do not enter ID, all will be loaded">
     </mat-form-field>
-    <button mat-flat-button (click)="getProductById()">search</button>
+    <button mat-button color="accent" (click)="getProductById()">Search</button>
+  </div>
 
-    <mat-table [dataSource]="products" class="mat-elevation-z8">
-        
-        <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{ product.id }} </mat-cell>
-        </ng-container>
+  <div class="grid">
+    <mat-card *ngFor="let product of products" class="product-card">
+      <mat-card-header>
+        <mat-card-title class="custom-title">{{ product.title }}</mat-card-title>
+        <mat-card-subtitle>Category: {{ product.category }}</mat-card-subtitle>
+        <mat-card-subtitle>Category: {{ product.id }}</mat-card-subtitle>
+      </mat-card-header>
 
-        <ng-container matColumnDef="images">
-          <mat-header-cell *matHeaderCellDef> Images </mat-header-cell>
-          <mat-cell *matCellDef="let product"> 
-            <img [src]="product.images[0]" alt="Product Image" width="50" height="50">
-          </mat-cell>
-        </ng-container>
-        
-        <ng-container matColumnDef="title">
-          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{ product.title }} </mat-cell>
-        </ng-container>
+      <img mat-card-image [src]="product.images[0]" alt="Product Image" (error)="onImageError($event)">
 
-        <ng-container matColumnDef="category">
-            <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-            <mat-cell *matCellDef="let product"> {{ product.category }} </mat-cell>
-        </ng-container>
-      
-    
-        <ng-container matColumnDef="price">
-          <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-          <mat-cell *matCellDef="let product"> ${{ product.price }} </mat-cell>
-        </ng-container>
-    
-        <ng-container matColumnDef="tax">
-          <mat-header-cell *matHeaderCellDef> Tax </mat-header-cell>
-          <mat-cell *matCellDef="let product"> ${{ product.tax }} </mat-cell>
-        </ng-container>
-    
-        <ng-container matColumnDef="total">
-          <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-          <mat-cell *matCellDef="let product"> ${{ product.total }} </mat-cell>
-        </ng-container>
-    
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-</div>  
+      <mat-card-content>
+        <p><strong>Price:</strong> ${{ product.price }}</p>
+        <p><strong>Tax:</strong> ${{ product.tax }}</p>
+        <p><strong>Total:</strong> ${{ product.total }}</p>
+      </mat-card-content> 
+    </mat-card>
+  </div>
+</div>
+

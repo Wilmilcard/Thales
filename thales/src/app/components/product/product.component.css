@@ -1,0 +1,37 @@
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .product-card {
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-title {
+    color: #1768c4;
+    font-family: 'bold', poppins;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .product-card img {
+    height: 300px;
+    object-fit: cover;
+  }
